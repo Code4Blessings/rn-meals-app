@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
+
+import { CATEGORIES } from '../data/dummy-data';
 
 const CategoriesScreen = props => {
     return(
-        <View style={styles.screen}>
-            <Text>Categories Screen</Text>
-        </View>
+        <FlatList data={CATEGORIES} numColumns={2} />
     );
 };
 

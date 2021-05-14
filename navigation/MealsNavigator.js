@@ -33,10 +33,11 @@ const MealsNavigator = createStackNavigator({
     defaultNavigationOptions: {
         headerStyle: {
                 backgroundColor: colors.accentColor,
-                height: 100
+                height: 100,
         },
         headerTitleStyle: {
-            fontSize: 25
+            fontSize: 25,
+            letterSpacing: 1
         },
          headerTintColor: 'white'
     }

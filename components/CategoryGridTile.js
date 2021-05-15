@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         padding: 15,
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     title: {
         fontFamily: 'open-sans-bold',

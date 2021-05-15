@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -10,6 +11,7 @@ import MealDetailsScreen from '../screens/MealDetailsScreen';
 import colors from '../constants/colors';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
 import HeaderButton from '../components/HeaderButton';
+import FavoritesScreen from '../screens/FavoritesScreen';
 
 const MealsNavigator = createStackNavigator({
     Categories: {
@@ -63,4 +65,27 @@ const MealsNavigator = createStackNavigator({
     }
 });
 
-export default createAppContainer(MealsNavigator);
+const MealsFavTabNavigator = createBottomTabNavigator({
+    Meals: {
+        screen: MealsNavigator, 
+        navigationOptions: {
+            tabBarIcon:(tabInfo) => {
+                return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
+            }
+        }
+    },
+    Favorites: {
+        screen: FavoritesScreen,
+        navigationOptions: {
+            tabBarIcon:(tabInfo) => {
+                return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />
+            }
+        }
+    }
+}, {
+    tabBarOptions: {
+        activeTintColor: colors.accentColor
+    }
+});
+
+export default createAppContainer(MealsFavTabNavigator);

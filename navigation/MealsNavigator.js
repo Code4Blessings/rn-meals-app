@@ -13,6 +13,18 @@ import {CATEGORIES, MEALS} from '../data/dummy-data';
 import HeaderButton from '../components/HeaderButton';
 import FavoritesScreen from '../screens/FavoritesScreen';
 
+const defaultStackNavOptions = {
+        headerStyle: {
+                backgroundColor: colors.accentColor,
+                height: 100,
+        },
+        headerTitleStyle: {
+            fontSize: 22,
+            letterSpacing: 1
+        },
+         headerTintColor: 'white'
+    }
+
 const MealsNavigator = createStackNavigator({
     Categories: {
         screen:CategoriesScreen,
@@ -52,17 +64,19 @@ const MealsNavigator = createStackNavigator({
     }
 
 }, {
-    defaultNavigationOptions: {
-        headerStyle: {
-                backgroundColor: colors.accentColor,
-                height: 100,
-        },
-        headerTitleStyle: {
-            fontSize: 22,
-            letterSpacing: 1
-        },
-         headerTintColor: 'white'
-    }
+    defaultNavigationOptions: defaultStackNavOptions
+});
+
+const FavNavigator = createStackNavigator({
+    Favorites: {
+        screen: FavoritesScreen,
+        navigationOptions: {
+            headerTitle: 'Your Favorites'
+        }
+    },
+    MealDetail: MealDetailsScreen
+}, {
+    defaultNavigationOptions: defaultStackNavOptions
 });
 
 const MealsFavTabNavigator = createBottomTabNavigator({
@@ -75,7 +89,7 @@ const MealsFavTabNavigator = createBottomTabNavigator({
         }
     },
     Favorites: {
-        screen: FavoritesScreen,
+        screen: FavNavigator,
         navigationOptions: {
             tabBarIcon:(tabInfo) => {
                 return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />

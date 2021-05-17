@@ -3,6 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Ionicons } from '@expo/vector-icons';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -12,6 +13,8 @@ import colors from '../constants/colors';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
 import HeaderButton from '../components/HeaderButton';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import FiltersScreen from '../screens/FiltersScreen';
+
 
 const defaultStackNavOptions = {
         headerStyle: {
@@ -28,8 +31,17 @@ const defaultStackNavOptions = {
 const MealsNavigator = createStackNavigator({
     Categories: {
         screen:CategoriesScreen,
-        navigationOptions: {
-            headerTitle: 'Meal Categories',
+        navigationOptions: (navData) => {
+            return {
+                headerTitle: 'Meal Categories',
+                headerLeft: (
+                    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item title='Menu' iconName='ios-menu' onPress={() => {
+                            navData.navigation.toggleDrawer();
+                        }} />
+                    </HeaderButtons>
+                )
+            }
         }
     },
     CategoryMeals: {
@@ -70,8 +82,18 @@ const MealsNavigator = createStackNavigator({
 const FavNavigator = createStackNavigator({
     Favorites: {
         screen: FavoritesScreen,
-        navigationOptions: {
-            headerTitle: 'Your Favorites'
+        navigationOptions: (navigationData) => {
+            return {
+                headerTitle: 'Your Favorites',
+                headerLeft: (
+                    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item title='Menu' iconName='ios-menu' onPress={() => {
+                            navigationData.navigation.toggleDrawer();
+                        }} />
+                    </HeaderButtons>
+                )
+            }
+            
         }
     },
     MealDetail: MealDetailsScreen
@@ -102,4 +124,32 @@ const MealsFavTabNavigator = createBottomTabNavigator({
     }
 });
 
-export default createAppContainer(MealsFavTabNavigator);
+const FiltersNavigator = createStackNavigator({
+    Filters: {
+        screen: FiltersScreen,
+        navigationOptions: (navData) => {
+            return {
+                headerTitle: 'Filter Meals',
+                headerLeft: (
+                   <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item title='Menu' iconName='ios-menu' onPress={() => {
+                            navData.navigation.toggleDrawer();
+                        }} />
+                    </HeaderButtons>
+                )
+            }
+        } 
+    }
+}, {
+     defaultNavigationOptions: defaultStackNavOptions
+});
+
+const MainNavigator = createDrawerNavigator({
+  MealsFavs: MealsFavTabNavigator,
+  Filters: {
+      screen: FiltersNavigator
+      
+  }  
+})
+
+export default createAppContainer(MainNavigator);

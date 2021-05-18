@@ -22,6 +22,7 @@ const defaultStackNavOptions = {
                 height: 100,
         },
         headerTitleStyle: {
+            fontFamily: 'open-sans',
             fontSize: 22,
             letterSpacing: 1
         },
@@ -120,6 +121,9 @@ const MealsFavTabNavigator = createBottomTabNavigator({
     }
 }, {
     tabBarOptions: {
+        labelStyle:{
+            fontFamily: 'open-sans-bold'
+        },
         activeTintColor: colors.accentColor
     }
 });
@@ -145,11 +149,23 @@ const FiltersNavigator = createStackNavigator({
 });
 
 const MainNavigator = createDrawerNavigator({
-  MealsFavs: MealsFavTabNavigator,
+  MealsFavs: {
+      screen: MealsFavTabNavigator,
+      navigationOptions: {
+          drawerLabel: 'Meals'
+      }
+    },
   Filters: {
       screen: FiltersNavigator
       
   }  
+}, {
+    contentOptions: {
+        activeTintColor: colors.accentColor,
+        labelStyle: {
+            fontFamily: 'open-sans-bold'
+        }
+    }
 })
 
 export default createAppContainer(MainNavigator);

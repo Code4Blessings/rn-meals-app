@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -18,15 +19,15 @@ import FiltersScreen from '../screens/FiltersScreen';
 
 const defaultStackNavOptions = {
         headerStyle: {
-                backgroundColor: colors.accentColor,
-                height: 100,
+                backgroundColor: Platform.OS === 'android' ? colors.accentColor : '',
+                height: 90,
         },
         headerTitleStyle: {
             fontFamily: 'open-sans',
             fontSize: 22,
             letterSpacing: 1
         },
-         headerTintColor: 'white'
+         headerTintColor: Platform.OS == 'android' ? 'white' : colors.primaryColor
     }
 
 const MealsNavigator = createStackNavigator({
@@ -111,6 +112,7 @@ const MealsFavTabNavigator = createBottomTabNavigator({
             }
         }
     },
+
     Favorites: {
         screen: FavNavigator,
         navigationOptions: {

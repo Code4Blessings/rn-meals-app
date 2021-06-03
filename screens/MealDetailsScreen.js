@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
@@ -11,6 +12,7 @@ const ListItem = props => {
     </View>
 };
 
+
 const MealDetailsScreen = props => {
     const mealId = props.navigation.getParam('mealId');
 
@@ -19,6 +21,7 @@ const MealDetailsScreen = props => {
     return (
         <ScrollView>
             <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />
+
              <View style={styles.details}>
                 <DefaultText>{selectedMeal.duration}m</DefaultText>
                 <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>

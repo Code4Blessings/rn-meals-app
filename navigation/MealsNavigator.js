@@ -23,7 +23,7 @@ const defaultStackNavOptions = {
                 height: 90,
         },
         headerTitleStyle: {
-            fontFamily: 'open-sans',
+            fontFamily: 'open-sans-bold',
             fontSize: 22,
             letterSpacing: 1
         },
@@ -142,7 +142,14 @@ const FiltersNavigator = createStackNavigator({
                             navData.navigation.toggleDrawer();
                         }} />
                     </HeaderButtons>
-                )
+                ),
+                headerRight: (
+                   <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item title='Save' iconName='ios-save' onPress={() => {
+                           console.log('Saving filters!');
+                        }} />
+                    </HeaderButtons>
+                ),
             }
         } 
     }

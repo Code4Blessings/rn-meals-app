@@ -145,8 +145,8 @@ const FiltersNavigator = createStackNavigator({
                 ),
                 headerRight: (
                    <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                        <Item title='Menu' iconName='ios-menu' onPress={() => {
-                            navData.navigation.toggleDrawer();
+                        <Item title='Save' iconName='ios-save' onPress={() => {
+                           console.log('Saving filters!');
                         }} />
                     </HeaderButtons>
                 ),

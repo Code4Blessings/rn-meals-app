@@ -23,6 +23,17 @@ const FiltersScreen = props => {
     const [isVegan, setIsVegan] = useState(false);
     const [isVegetarian, setIsVegetarian] = useState(false);
 
+    const saveFilters = () => {
+        const appliedFilters = {
+            glutenFree: isGlutenFree,
+            lactoseFree: isLactoseFree,
+            vegan: isVegan,
+            Vegetarian: isVegetarian
+        };
+
+        console.log(appliedFilters);
+    }
+
     return (
         <View style={styles.screen}>
             <Text style={styles.title}>Available Filters / Restrictions</Text>

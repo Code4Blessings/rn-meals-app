@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -19,16 +18,27 @@ import FiltersScreen from '../screens/FiltersScreen';
 
 const defaultStackNavOptions = {
         headerStyle: {
-                backgroundColor: Platform.OS === 'android' ? colors.accentColor : '',
-                height: 90,
+                backgroundColor: colors.accentColor,
+                height: 100,
         },
         headerTitleStyle: {
             fontFamily: 'open-sans-bold',
             fontSize: 22,
             letterSpacing: 1
         },
-         headerTintColor: Platform.OS == 'android' ? 'white' : colors.primaryColor
+         headerTintColor: 'white' 
     }
+
+const saveFilters = () => {
+        const appliedFilters = {
+            glutenFree: isGlutenFree,
+            lactoseFree: isLactoseFree,
+            vegan: isVegan,
+            Vegetarian: isVegetarian
+        };
+
+        console.log(appliedFilters);
+}
 
 const MealsNavigator = createStackNavigator({
     Categories: {

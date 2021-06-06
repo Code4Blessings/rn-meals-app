@@ -1,3 +1,3 @@
 # Meals App
 
-Inspired by Udemy Course by Academind "React Native - The Practical Guide"
+Inspired by Udemy Course by Academind

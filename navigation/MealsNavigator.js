@@ -5,6 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Ionicons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -29,7 +30,7 @@ const defaultStackNavOptions = {
          headerTintColor: 'white' 
     }
 
-const saveFilters = () => {
+{/*const saveFilters = () => {
         const appliedFilters = {
             glutenFree: isGlutenFree,
             lactoseFree: isLactoseFree,
@@ -38,7 +39,7 @@ const saveFilters = () => {
         };
 
         console.log(appliedFilters);
-}
+}*/}
 
 const MealsNavigator = createStackNavigator({
     Categories: {
@@ -74,6 +75,7 @@ const MealsNavigator = createStackNavigator({
             const mealId = navigationData.navigation.getParam('mealId')
 
             const selectedmeal = MEALS.find(meal => meal.id === mealId);
+            
 
             return {
                 headerTitle: selectedmeal.title,
